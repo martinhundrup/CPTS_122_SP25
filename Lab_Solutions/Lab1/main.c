@@ -12,7 +12,7 @@
 // entry point for program
 int main() {
 
-	Task_1();
+	task_1();
 
 	// don't forget to always return 0
 	return 0;

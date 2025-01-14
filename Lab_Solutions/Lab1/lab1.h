@@ -18,12 +18,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+ 
 // code organization
 #pragma region Task 1
 
 // one entry point function per task
-void Task_1();
+void task_1();
 
 #pragma endregion
 

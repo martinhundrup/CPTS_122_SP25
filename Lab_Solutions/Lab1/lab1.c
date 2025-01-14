@@ -12,7 +12,7 @@
 // mirrors layout in the corresponding .h file
 #pragma region Task 1
 
-void Task_1() {
+void task_1() {
 
 	printf("hello, world!\n");
 }
