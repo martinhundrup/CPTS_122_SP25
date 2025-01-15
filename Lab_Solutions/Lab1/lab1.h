@@ -52,6 +52,14 @@ char* my_strcat(char* destination, const char* source);
 void recursive_string_reverse(char* str);
 
 /*
+	recursively reverses a string in place
+
+	@param the string to reverse
+	@param the length of the string to reverse
+*/
+void recursive_string_reverse_len(char* str, int len);
+
+/*
 	tokenizes a string
 
 	@param the string to tokenize - make NULL to continue tokening the previous call's string

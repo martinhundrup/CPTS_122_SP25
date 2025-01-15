@@ -12,8 +12,8 @@
 // entry point for program
 int main() {
 
-	//task_1();
-	//task_2();
+	task_1();
+	task_2();
 
 	// don't forget to always return 0
 	return 0;

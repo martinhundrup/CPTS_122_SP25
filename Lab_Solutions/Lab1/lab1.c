@@ -37,12 +37,17 @@ void task_2() {
 	// string literal is read-only
 	// char* _str = "hello";
 	// so we must use a char array
-	char _str[100] = "hello,.,cpts.,.122!";
+	char _str[100] = "hello,.,cpts.,.122!\n";
 
 	printf("string before recursive string reverse: %s\n", _str);
 	recursive_string_reverse(_str);
 	printf("string after recursive string reverse: %s\n\n", _str);
 	recursive_string_reverse(_str);
+
+	printf("string before recursive string reverse: %s\n", _str);
+	recursive_string_reverse_len(_str, strlen(_str));
+	printf("string after recursive string reverse: %s\n\n", _str);
+	recursive_string_reverse_len(_str, strlen(_str));
 
 	printf("strtok returned: %s\n", my_strtok(_str, ",."));
 	for (int i = 0; i < 9; i++) {
@@ -83,39 +88,53 @@ char* my_strcat(char* destination, const char* source) {
 	}
 
 	// append null character
-	destination[i + end] = '\n';
+	destination[i + end] = '\0';
 	return destination;
 }
 
 void recursive_string_reverse(char* str) {
 
-	static char* _str = NULL;
-	static int i = 0;
+	// declare static vars to remember state
+	static int len = 0;
+	static char* _str;
 
-	// new call to func
-	if (str != _str) {
-
-		i = 0;
+	// new string to reverse
+	if (str) {
+		len = strlen(str);
 		_str = str;
 	}
 
-	int len = strlen(str);
+	// base case
+	if (_str >= &_str[len]) return;
 
-	// base case: the middle of the string was reached
-	if (i >= len / 2) {
+	// swap the ends
+	char t = *_str;
+	*_str = _str[len - 1];
+	_str[len - 1] = t;
 
-		_str = NULL;
-		return;
-	}
+	// increment ends
+	_str++;
+	len -= 2;
 
-	// swap
-	char t = str[i];
-	str[i] = str[len - i - 1];
-	str[len - i - 1] = t;
+	// recursive call
+	recursive_string_reverse(NULL);
+}
 
-	// increment and recurse
-	i++;
-	recursive_string_reverse(str);
+void recursive_string_reverse_len(char* str, int len) {
+
+	if (str >= &str[len]) return; // base case
+
+	// swap the ends
+	char t = *str;
+	*str = str[len - 1];
+	str[len - 1] = t;
+
+	// increment ends
+	str++;
+	len -= 2;
+
+	// recursive call
+	recursive_string_reverse_len(str, len);
 }
 
 char* my_strtok(char* str, char* delims) {
