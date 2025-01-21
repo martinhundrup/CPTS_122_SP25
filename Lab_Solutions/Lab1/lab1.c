@@ -2,7 +2,7 @@
  * File: lab1.c
  * Author: Martin Hundrup
  * Professor: Andy O'Fallon
- * Class: CPT_S 122, Spring 2024
+ * Class: CPT_S 122, Spring 2025
  * Assignment: Lab 1
  * Created: January 14, 2025
  */
