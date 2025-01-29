@@ -104,10 +104,13 @@ static inline char* remove_char(char* str, char target) {
 
 	int read = 0, write = 0;
 
-	while (str[read]) {
+	while (str[read] != '\0') {
+
 		if (str[read] != target) {
+
 			str[write++] = str[read];
 		}
+
 		read++;
 	}
 
@@ -115,4 +118,8 @@ static inline char* remove_char(char* str, char target) {
 }
 
 #endif
+
+
+
+
 
