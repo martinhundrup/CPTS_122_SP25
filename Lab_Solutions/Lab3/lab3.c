@@ -209,6 +209,7 @@ Boolean deleteContact(Node** pList, Contact searchContact) {
 		*pList = (*pList)->pNext;
 
 		free(pTemp);
+
 		return TRUE;
 	}
 
