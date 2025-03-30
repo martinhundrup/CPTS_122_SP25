@@ -59,7 +59,7 @@ private:
 	void deleteTree(Node* pCur);
 
 	// deletes a node in the tree - lazy delete
-	void deleteData(Node* pCur, T data);
+	void deleteNode(Node* pCur, T data);
 
 public:
 
@@ -90,7 +90,7 @@ public:
 	void clear();
 
 	// public interface for lazy delete
-	void deleteData(T data);
+	void deleteNode(T data);
 };
 
 #pragma region Node Methods
@@ -119,12 +119,24 @@ BST<T>::Node::Node(T _data) {
 template<typename T>
 void BST<T>::insert(Node** pCur, T data) {
 
-	if (*pCur == nullptr) 
+	if (*pCur == nullptr) {
 		*pCur = new Node(data);
-
-	else if (data < (*pCur)->data) {
-		insert(&(*pCur)->pLeft, data); // insert left
+		return;
 	}
+
+	else if ((*pCur)->count <= 0) { // check if we can re-use this node
+
+		if (((*pCur)->pLeft == nullptr || (*pCur)->pLeft->data < data) &&
+			((*pCur)->pRight == nullptr || (*pCur)->pRight->data > data)) { // we can place here
+
+			(*pCur)->data = data;
+			(*pCur)->count++;
+			return;
+		}
+	}
+
+	if (data < (*pCur)->data)
+		insert(&(*pCur)->pLeft, data); // insert left
 
 	else if (data > (*pCur)->data) 
 		insert(&(*pCur)->pRight, data); // insert left
@@ -181,14 +193,12 @@ void BST<T>::deleteTree(Node* pCur) {
 }
 
 template<typename T>
-void BST<T>::deleteData(Node* pCur, T data) {
+void BST<T>::deleteNode(Node* pCur, T data) {
 
 	if (!pCur) return; // base case
 
-	if (pCur->data == data) { // we found it
-
-		if (pCur->count <= 0) return;
-		else pCur->count--; return;
+	if (pCur->data == data && pCur->count > 0) { // we found it and have it
+		pCur->count--; return;
 	}
 	
 	deleteData(pCur->pLeft, data); // recurse left
@@ -253,7 +263,7 @@ void BST<T>::clear() {
 }
 
 template<typename T>
-void BST<T>::deleteData(T data) {
+void BST<T>::deleteNode(T data) {
 
 	deleteData(pRoot, data);
 }
