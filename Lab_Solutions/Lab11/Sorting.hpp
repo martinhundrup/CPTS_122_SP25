@@ -1,10 +1,10 @@
 /*
- * File: main.cpp
+ * File: Sorting.hpp
  * Author: Martin Hundrup
  * Professor: Andy O'Fallon
  * Class: CPT_S 122, Spring 2025
- * Assignment: Lab 10
- * Created: March 21, 2025
+ * Assignment: Lab 11
+ * Created: March 29, 2025
  */
 
 #pragma once
@@ -36,6 +36,8 @@ public:
 	template <typename T> 
 	static T* mergesort(T* arr, int n);
 
+#pragma region Testing
+
 	// determines if an array is sorted or not
 	template <typename T> 
 	static bool isSorted(T* arr, int n);
@@ -48,7 +50,10 @@ public:
 	template <typename T>
 	static bool testSort(T* arr, int n);
 
+	// tests an upperbounded number of lines as arrays from a file
 	static bool testSortFromCSV(const std::string& filename, int upperBoundLines);
+
+#pragma endregion
 };
 
 template <typename T>
@@ -106,6 +111,8 @@ T* Sorting::mergesort(T* arr, int n) {
 
 	return mergesort(arr, 0, n - 1);
 }
+
+#pragma region Testing
 
 template <typename T>
 bool Sorting::isSorted(T* arr, int n) {
@@ -181,3 +188,4 @@ bool Sorting::testSortFromCSV(const std::string& filename, int upperBoundLines =
 	file.close();
 	return true;
 }
+#pragma endregion

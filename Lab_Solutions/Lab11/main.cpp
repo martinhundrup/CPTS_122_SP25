@@ -12,8 +12,10 @@
 
 int main() {
 
-	Sorting::testSortFromCSV("large_arrays.csv", 100);
+	// uncomment to test your merge sort function!
+	//Sorting::testSortFromCSV("large_arrays.csv", 100);
     
+	// uncomment to play around with your BST!
 	//Interpreter::run();
 
 	return 0;
