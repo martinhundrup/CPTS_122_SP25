@@ -82,12 +82,10 @@ T* Sorting::merge(T* arr, int start, int mid, int end) {
 
 	for (int i = 0; i < size; i++) {
 
-		if (l >= mid) {
-			// Left subarray exhausted
+		if (l >= mid) { // left subarray exhausted			
 			tempArr[i] = arr[r++];
 		}
-		else if (r > end) {
-			// Right subarray exhausted
+		else if (r > end) { // right subarray exhausted			
 			tempArr[i] = arr[l++];
 		}
 		else if (arr[l] <= arr[r]) {

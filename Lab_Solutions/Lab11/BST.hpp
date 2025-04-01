@@ -96,7 +96,7 @@ public:
 	// deletes all node in the tree - clears it
 	void clear();
 
-	// public interface for lazy delete
+	// public interface for delete
 	void deleteNode(T data);
 };
 
